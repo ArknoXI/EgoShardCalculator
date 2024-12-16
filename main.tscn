@@ -1,0 +1,108 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpir032sirgin"]
+
+[ext_resource type="Script" path="res://Calculator.gd" id="1_2wcqk"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_2wcqk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/PanelContainer"]
+layout_mode = 2
+
+[node name="MDHard" type="Label" parent="CanvasLayer/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "MD hard per week:
+"
+
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "0"
+popup/item_1/text = "1"
+popup/item_1/id = 1
+popup/item_2/text = "2"
+popup/item_2/id = 2
+popup/item_3/text = "3"
+popup/item_3/id = 3
+
+[node name="MDNormal" type="Label" parent="CanvasLayer/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "MD Normal per DAY:
+"
+
+[node name="mdnormal" type="LineEdit" parent="CanvasLayer/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "0"
+caret_blink = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Days" type="VBoxContainer" parent="CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Days" type="Label" parent="CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer/Days"]
+layout_mode = 2
+text = "Days per week:"
+
+[node name="days" type="LineEdit" parent="CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer/Days"]
+layout_mode = 2
+
+[node name="Separator" type="VBoxContainer" parent="CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer/Separator"]
+layout_mode = 2
+text = "       "
+
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer/Separator"]
+layout_mode = 2
+text = "BattlePass"
+
+[node name="Result" type="VBoxContainer" parent="CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Valor" type="Label" parent="CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer/Result"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer/Result"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Ver Valor"
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Quit" type="Button" parent="CanvasLayer/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+
+[connection signal="item_selected" from="CanvasLayer/Control/PanelContainer/VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="text_changed" from="CanvasLayer/Control/PanelContainer/VBoxContainer/mdnormal" to="." method="_on_mdnormal_text_changed"]
+[connection signal="text_changed" from="CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer/Days/days" to="." method="_on_days_text_changed"]
+[connection signal="toggled" from="CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer/Separator/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer/Result/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
